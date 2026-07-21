@@ -64,8 +64,8 @@ def load_and_clean_users(file_path):
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
         if len(i) != 2:
-            break
-        
+            continue
+
         cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
         conn.commit()
     #print("TODO: load_users")
