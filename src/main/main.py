@@ -59,7 +59,7 @@ def load_and_clean_users(file_path):
         list_users.append(i)
 
     # Slice list to remove header
-    list_users = list_users[1:]
+    #list_users = list_users[1:]
 
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
