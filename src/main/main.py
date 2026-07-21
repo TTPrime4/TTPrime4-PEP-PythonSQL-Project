@@ -88,6 +88,9 @@ def load_and_clean_call_logs(file_path):
     for i in list_logs:
         if len(i) != 5:
             continue
+        for column in i:
+            if column == None:
+                continue
         cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?)", i)
         conn.commit()
     #print("TODO: load_call_logs")
