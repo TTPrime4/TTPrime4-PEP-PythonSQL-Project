@@ -63,17 +63,34 @@ def load_and_clean_users(file_path):
 
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
-        if len(i) != 2:
+        if len(i) != 5:
             break
-        cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
+        cursor.execute("INSERT INTO users (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?)", i)
         conn.commit()
     #print("TODO: load_users")
 
 
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
+    # Load log data into read_logs
+    logs = open(file_path)
+    read_logs = csv.reader(logs)
 
-    print("TODO: load_call_logs")
+    # Convert read_logs into list
+    list_logs = []
+    for i in read_logs:
+        list_logs.append(i)
+
+    # Slice list to remove header
+    list_logs = list_logs[1:]
+
+    # Insert users into table, ending operation at abnormal data
+    for i in list_logs:
+        if len(i) != 2:
+            break
+        cursor.execute("INSERT INTO logs (firstName, lastName) VALUES (?, ?)", i)
+        conn.commit()
+    #print("TODO: load_call_logs")
 
 
 # This function will write analytics data to testUserAnalytics.csv - average call time, and number of calls per user.
