@@ -64,16 +64,7 @@ def load_and_clean_users(file_path):
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
         if len(i) != 2:
-            continue
-
-        # Test blank columns
-        noneFlag = 0
-        for column in i:
-            if column == '':
-                noneFlag = 1
-                break
-        if noneFlag == 1:
-            continue
+            break
         
         cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
         conn.commit()
