@@ -64,7 +64,10 @@ def load_and_clean_users(file_path):
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
         if len(i) != 2:
-            break
+            continue
+        for column in i:
+            if column == '':
+                continue
         cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
         conn.commit()
     #print("TODO: load_users")
@@ -84,7 +87,7 @@ def load_and_clean_call_logs(file_path):
     # Slice list to remove header
     list_logs = list_logs[1:]
 
-    # Insert users into table, ending operation at abnormal data
+    # Insert logs into table, ending operation at abnormal data
     for i in list_logs:
         if len(i) != 5:
             continue
