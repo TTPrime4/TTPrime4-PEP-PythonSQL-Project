@@ -63,9 +63,9 @@ def load_and_clean_users(file_path):
 
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
-        if len(i) != 5:
+        if len(i) != 2:
             break
-        cursor.execute("INSERT INTO users (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?)", i)
+        cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
         conn.commit()
     #print("TODO: load_users")
 
@@ -88,7 +88,7 @@ def load_and_clean_call_logs(file_path):
     for i in list_logs:
         if len(i) != 2:
             break
-        cursor.execute("INSERT INTO logs (firstName, lastName) VALUES (?, ?)", i)
+        cursor.execute("INSERT INTO logs (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?)", i)
         conn.commit()
     #print("TODO: load_call_logs")
 
