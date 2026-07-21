@@ -48,20 +48,23 @@ def main():
 
 # This function will load the users.csv file into the users table, discarding any records with incomplete data
 def load_and_clean_users(file_path):
+    # Load user data into read_users
     users = open(file_path)
     read_users = csv.reader(users)
-
+    # Convert read_users into list
     list_users = []
     for i in read_users:
         list_users.append(i)
-
+    # Slice list to remove header
     list_users = list_users[1:]
+    # Filter users, ending operation at abnormal data
     filter_users = []
     for i in list_users:
         if len(i) != 2:
             break
-        filter_users.append(i)
-    cursor.executemany("INSERT INTO users (firstName, lastName) VALUES (?, ?)", filter_users)
+        cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
+        #filter_users.append(i)
+    #cursor.executemany("INSERT INTO users (firstName, lastName) VALUES (?, ?)", filter_users)
     
     conn.commit()
     #print("TODO: load_users")
