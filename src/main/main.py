@@ -63,10 +63,7 @@ def load_and_clean_users(file_path):
         if len(i) != 2:
             break
         cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
-        #filter_users.append(i)
-    #cursor.executemany("INSERT INTO users (firstName, lastName) VALUES (?, ?)", filter_users)
-    
-    conn.commit()
+        conn.commit()
     #print("TODO: load_users")
 
 
