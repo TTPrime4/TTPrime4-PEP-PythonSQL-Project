@@ -82,7 +82,7 @@ def load_and_clean_call_logs(file_path):
         list_logs.append(i)
 
     # Slice list to remove header
-    #list_logs = list_logs[1:]
+    list_logs = list_logs[1:]
 
     # Insert users into table, ending operation at abnormal data
     for i in list_logs:
