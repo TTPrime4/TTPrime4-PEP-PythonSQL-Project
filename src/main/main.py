@@ -53,8 +53,6 @@ def load_and_clean_users(file_path):
     read_users = read_users[1:]
     filter_users = []
     for i in read_users:
-        if i == ('firstName', 'lastName'):
-            continue
         if len(i) != 2 :
             break
         filter_users.append(i)
