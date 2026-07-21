@@ -50,6 +50,8 @@ def main():
 def load_and_clean_users(file_path):
     with open(file_path,"r") as users:
         for row in users:
+            if row == "firstName,lastName":
+                continue
             cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", row)
     print("TODO: load_users")
 
