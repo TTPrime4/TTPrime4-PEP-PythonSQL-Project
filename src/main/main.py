@@ -50,12 +50,17 @@ def main():
 def load_and_clean_users(file_path):
     users = open(file_path)
     read_users = csv.reader(users)
-    filter_users = []
+
+    list_users = []
     for i in read_users:
+        list_users.append(i)
+
+    list_users = list_users[1:]
+    filter_users = []
+    for i in list_users:
         if len(i) != 2:
             break
-        if i != ("firstName","lastName"):
-            filter_users.append(i)
+        filter_users.append(i)
     cursor.executemany("INSERT INTO users (firstName, lastName) VALUES (?, ?)", filter_users)
     
     conn.commit()
