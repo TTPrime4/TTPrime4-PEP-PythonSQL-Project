@@ -87,7 +87,7 @@ def load_and_clean_call_logs(file_path):
     # Insert users into table, ending operation at abnormal data
     for i in list_logs:
         if len(i) != 5:
-            break
+            continue
         cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?)", i)
         conn.commit()
     #print("TODO: load_call_logs")
