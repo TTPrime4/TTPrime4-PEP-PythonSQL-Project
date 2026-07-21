@@ -64,7 +64,17 @@ def load_and_clean_users(file_path):
     # Insert users into table, ending operation at abnormal data
     for i in list_users:
         if len(i) != 2:
-            break
+            continue
+
+        # Test blank columns
+        noneFlag = 0
+        for column in i:
+            if column == '':
+                noneFlag = 1
+                break
+        if noneFlag == 1:
+            continue
+
         cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", i)
         conn.commit()
     #print("TODO: load_users")
@@ -84,10 +94,14 @@ def load_and_clean_call_logs(file_path):
     # Slice list to remove header
     list_logs = list_logs[1:]
 
-    # Insert logs into table, ending operation at abnormal data
+    # Insert logs into table
     for i in list_logs:
+
+        # Test for number of columns (5 total w/o callId)
         if len(i) != 5:
             continue
+
+        # Test blank columns
         noneFlag = 0
         for column in i:
             if column == '':
@@ -95,6 +109,7 @@ def load_and_clean_call_logs(file_path):
                 break
         if noneFlag == 1:
             continue
+        
         cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?, ?, ?, ?, ?)", i)
         conn.commit()
     #print("TODO: load_call_logs")
