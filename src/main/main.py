@@ -52,7 +52,9 @@ def load_and_clean_users(file_path):
     read_users = csv.reader(users)
     filter_users = []
     for i in read_users:
-        if len(i) != 2 OR i == ('firstName', 'lastName'):
+        if i == ('firstName', 'lastName'):
+            continue
+        if len(i) != 2 :
             break
         filter_users.append(i)
     cursor.executemany("INSERT INTO users (firstName, lastName) VALUES (?, ?)", filter_users)
