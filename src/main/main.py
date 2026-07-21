@@ -50,7 +50,6 @@ def main():
 def load_and_clean_users(file_path):
     users = open(file_path)
     read_users = csv.reader(users)
-    read_users = read_users[1:]
     filter_users = []
     for i in read_users:
         if len(i) != 2 :
