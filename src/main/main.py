@@ -54,8 +54,9 @@ def load_and_clean_users(file_path):
     for i in read_users:
         if i == ('firstName', 'lastName'):
             continue
-        if len(i) == 2:
-            filter_users.append(i)
+        if len(i) != 2:
+            break
+        filter_users.append(i)
     cursor.executemany("INSERT INTO users (firstName, lastName) VALUES (?, ?)", filter_users)
     
     conn.commit()
