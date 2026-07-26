@@ -123,7 +123,9 @@ def write_ordered_calls(csv_file_path):
     ordered = cursor.execute("SELECT * FROM callLogs ORDER BY startTime")
     with open(csv_file_path, "a") as orderedCalls:
         for i in ordered:
-            orderedCalls.write(i)
+            callId, phoneNumber, startTime, endTime, direction, userId = i
+            row = callId + "," + phoneNumber + "," + startTime + "," + endTime + "," + direction + "," + userId
+            orderedCalls.write(row)
     print("TODO: write_ordered_calls")
 
 
