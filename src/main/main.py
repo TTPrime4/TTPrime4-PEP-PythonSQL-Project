@@ -124,7 +124,7 @@ def write_ordered_calls(csv_file_path):
     with open(csv_file_path, "a") as orderedCalls:
         for i in ordered:
             callId, phoneNumber, startTime, endTime, direction, userId = i
-            row = str(callId) + "," + phoneNumber + "," + str(startTime) + "," + str(endTime) + "," + direction + "," + str(userId)
+            row = str(callId) + "," + phoneNumber + "," + str(startTime) + "," + str(endTime) + "," + direction + "," + str(userId) + "\n"
             orderedCalls.write(row)
     print("TODO: write_ordered_calls")
 
