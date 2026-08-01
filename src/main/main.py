@@ -114,7 +114,7 @@ def write_user_analytics(csv_file_path):
     with open(csv_file_path, "a") as userAnal:
         for i in anal:
             userId, avgDuration, numCalls = i
-            row = str(userId) + "," + avgDuration + "," + numCalls + "\n"
+            row = str(userId) + "," + str(avgDuration) + "," + str(numCalls) + "\n"
             userAnal.write(row)
     print("TODO: write_user_analytics")
 
