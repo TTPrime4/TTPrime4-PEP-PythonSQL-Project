@@ -111,7 +111,7 @@ def load_and_clean_call_logs(file_path):
 # example: 1,105.0,4 - where 1 is the userId, 105.0 is the avgDuration, and 4 is the numCalls.
 def write_user_analytics(csv_file_path):
     anal = cursor.execute("SELECT userId, AVG(endTime - startTime) as avgDuration, COUNT(userId) as numCalls FROM callLogs GROUP BY userId ORDER BY userId DESC")
-    with open(csv_file_path, "w") as userAnal:
+    with open(csv_file_path, "a") as userAnal:
         for i in anal:
             userId, avgDuration, numCalls = i
             row = str(userId) + "," + str(avgDuration) + "," + str(numCalls) + "\n"
@@ -123,7 +123,7 @@ def write_user_analytics(csv_file_path):
 # Then, write the ordered callLogs to orderedCalls.csv
 def write_ordered_calls(csv_file_path):
     ordered = cursor.execute("SELECT * FROM callLogs ORDER BY userId,startTime")
-    with open(csv_file_path, "w") as orderedCalls:
+    with open(csv_file_path, "a") as orderedCalls:
         for i in ordered:
             callId, phoneNumber, startTime, endTime, direction, userId = i
             row = str(callId) + "," + phoneNumber + "," + str(startTime) + "," + str(endTime) + "," + direction + "," + str(userId) + "\n"
